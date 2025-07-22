@@ -5,6 +5,7 @@ import App from './App.jsx'
 import './index.css'
 import WatchList from './components/WatchList/WatchList.jsx'
 import Anime from './components/Anime/Anime.jsx'
+import { ThemeProvider } from './context/ThemeContext.jsx'
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<App/>}> 
@@ -14,9 +15,10 @@ const router = createBrowserRouter(createRoutesFromElements(
 ))
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router}>
-
-  </RouterProvider>
+  <ThemeProvider>
+    <RouterProvider router={router}>
+    </RouterProvider>
+  </ThemeProvider>
 )
 
 

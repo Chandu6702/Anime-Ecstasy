@@ -7,7 +7,9 @@ function App() {
   return (
     <>
       <Navbar/>
-      <Outlet/>
+      <div className="pt-24 min-h-screen bg-white dark:bg-gray-950 text-black dark:text-white transition-colors duration-300">
+        <Outlet/>
+      </div>
     </>
   )
 }
