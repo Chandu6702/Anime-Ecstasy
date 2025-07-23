@@ -15,6 +15,7 @@ function Anime() {
     const newWatchList = [...watchList, animeObj];
     localStorage.setItem("watchlist", JSON.stringify(newWatchList));
     setWatchList(newWatchList);
+    // console.log(newWatchList)
   };
 
   const handleRemoveFromWatchList = (animeObj) => {
@@ -44,6 +45,7 @@ function Anime() {
       try {
         const res = await axios.get(`${api_URL}${pageNo}`);
         setAnime(res.data.data || []);
+        // console.log(res.data)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -60,7 +62,7 @@ function Anime() {
           Trending Anime
         </div>
         <div className="flex flex-row flex-wrap justify-around gap-10">
-          {/* ✅ Safer UI: handles loading or empty list */}
+          {/* Safer UI: handles loading or empty list */}
           {!Array.isArray(anime) || anime.length === 0 ? (
             <div className="text-center text-gray-500">
               Loading or no anime found...
