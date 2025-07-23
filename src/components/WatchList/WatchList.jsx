@@ -54,16 +54,16 @@ function WatchList() {
   }, [watchList]);
 
   return (
-    <>
-      <div className="flex justify-center items-centerflex-wrap m-4 ">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
+      <div className="flex justify-center items-center flex-wrap m-4 ">
         {genreList.map((genre, index) => (
           <div
             key={index}
             onClick={() => handleFilter(genre)}
             className={
               currGenre === genre
-                ? "flex justify-center items-center p-2 h-[3rem] w-[9rem] bg-blue-400 rounded-xl text-white font-bold mx-4"
-                : "flex justify-center items-center h-[3rem] w-[9rem] bg-gray-400/50 rounded-xl text-white font-bold mx-4"
+                ? "flex justify-center items-center p-2 h-[3rem] w-[9rem] bg-blue-400 dark:bg-blue-600 rounded-xl text-white font-bold mx-4 cursor-pointer hover:bg-blue-500 dark:hover:bg-blue-700 transition-colors"
+                : "flex justify-center items-center h-[3rem] w-[9rem] bg-gray-400/50 dark:bg-gray-600/50 rounded-xl text-white font-bold mx-4 cursor-pointer hover:bg-gray-500/50 dark:hover:bg-gray-500/50 transition-colors"
             }
           >
             {genre}
@@ -76,31 +76,32 @@ function WatchList() {
           value={search}
           type="text"
           placeholder="search Anime"
-          className="h-[3rem] w-[18rem] bg-gray-200 outline-none px-4"
+          className="h-[3rem] w-[18rem] bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white outline-none px-4 rounded-lg border dark:border-gray-600 focus:ring-2 focus:ring-blue-500 transition-colors"
         />
       </div>
-      <div className="border rounded overflow-hidden border-gray-200 m-8">
-        <table className="w-full text-gray-600 text-center">
-          <thead className="border-b-2">
+      <div className="border rounded overflow-hidden border-gray-200 dark:border-gray-700 m-8 bg-white dark:bg-gray-800 transition-colors duration-200">
+        <table className="w-full text-gray-600 dark:text-gray-300 text-center">
+          <thead className="border-b-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
             <tr>
-              <th>Name</th>
-              <th className="flex justify-center">
+              <th className="py-3 text-gray-900 dark:text-white">Name</th>
+              <th className="flex justify-center py-3">
                 <div
-                  className="p-2 hover:cursor-pointer hover:scale-125 duration-200"
+                  className="p-2 hover:cursor-pointer hover:scale-125 duration-200 text-gray-700 dark:text-gray-300"
                   onClick={sortIncreasing}
                 >
                   <FaArrowUp />
                 </div>
-                <div className="p-2">Rating</div>
+                <div className="p-2 text-gray-900 dark:text-white">Rating</div>
                 <div
-                  className="p-2 hover:cursor-pointer hover:scale-125 duration-200"
+                  className="p-2 hover:cursor-pointer hover:scale-125 duration-200 text-gray-700 dark:text-gray-300"
                   onClick={sortDecreasing}
                 >
                   <FaArrowDown />
                 </div>
               </th>
-              <th>Popularity</th>
-              <th>Genre</th>
+              <th className="py-3 text-gray-900 dark:text-white">Popularity</th>
+              <th className="py-3 text-gray-900 dark:text-white">Genre</th>
+              <th className="py-3 text-gray-900 dark:text-white">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -118,19 +119,19 @@ function WatchList() {
                   .includes(search.toLocaleLowerCase());
               })
               .map((item) => (
-                <tr className="border-b-2" key={item.mal_id}>
+                <tr className="border-b-2 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" key={item.mal_id}>
                   <td className="flex items-center px-6 py-4">
                     <img
                       src={item.images.jpg.image_url}
-                      className="h-[100px] w-[100px]"
+                      className="h-[100px] w-[100px] rounded-lg shadow-md"
                     />
-                    <div className="mx-10">{item.title}</div>
+                    <div className="mx-10 text-gray-900 dark:text-white font-medium">{item.title}</div>
                   </td>
-                  <td>{item.score}</td>
-                  <td>{item.popularity}</td>
-                  <td>{item.genres[0].name}</td>
+                  <td className="text-gray-700 dark:text-gray-300">{item.score}</td>
+                  <td className="text-gray-700 dark:text-gray-300">{item.popularity}</td>
+                  <td className="text-gray-700 dark:text-gray-300">{item.genres[0].name}</td>
                   <td
-                    className="text-red-800 hover:cursor-pointer hover:scale-125 duration-200"
+                    className="text-red-600 dark:text-red-400 hover:cursor-pointer hover:scale-125 duration-200 font-medium hover:text-red-700 dark:hover:text-red-300"
                     onClick={() => handleRemoveFromWatchList(item)}
                   >
                     Delete
@@ -140,7 +141,7 @@ function WatchList() {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 }
 
