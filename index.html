@@ -10,7 +10,20 @@
 
 <body>
   <div id="root"></div>
+  <!---- Toggle Switch Container ---->
+<div class="flex items-center space-x-2 ml-auto">
+  <span class="text-sm text-gray-600 dark:text-gray-300">Theme</span>
+
+  <!----Switch---->
+  <label for="theme-toggle" class="relative inline-flex items-center cursor-pointer">
+    <input type="checkbox" id="theme-toggle" class="sr-only peer" />
+    <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:bg-indigo-600 transition-colors duration-300"></div>
+    <div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-all duration-300 peer-checked:translate-x-full peer-checked:bg-white"></div>
+  </label>
+</div>
+
   <script type="module" src="/src/main.jsx"></script>
+  <script src="index.js"></script>
 </body>
 
 </html>
