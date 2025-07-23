@@ -43,10 +43,11 @@ function Anime() {
       
       try {
         const res = await axios.get(`${api_URL}${pageNo}`);
-        setAnime(res.data.data)
+        setAnime(res.data.data || [])
         // console.log(res.data)
       } catch (error) {
         console.error('Error fetching data:', error);
+        setAnime([]) // Ensure anime is always an array
       }
     }
     fetchData();
@@ -54,16 +55,18 @@ function Anime() {
   }, [pageNo]);
 
   return (
-    <div>
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
       <Banner/>
       <div>
-        <div className='w-full text-3xl text-center p-5 m-4'>
+        <div className='w-full text-3xl text-center p-5 m-4 text-gray-900 dark:text-white'>
           Trending Anime
         </div>
         <div className='flex flex-row flex-wrap justify-around gap-10'>
-          {anime.map((animeObj) => (
+          {anime && anime.length > 0 ? anime.map((animeObj) => (
             <AnimeCard key={animeObj.mal_id} watchList={watchList} animeObj={animeObj} image_url={animeObj.images.jpg.image_url} title={animeObj.title_english} handleAddToWatchList={handleAddToWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList}/>
-          ))}
+          )) : (
+            <div className="text-center text-gray-500 dark:text-gray-400">Loading anime...</div>
+          )}
         </div>
         <Pagination pageNo={pageNo} handlePrev={handlePrev} handleNext={handleNext}/>
       </div>
