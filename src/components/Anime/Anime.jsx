@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Banner from "./Banner.jsx";
 import axios from "axios";
 import AnimeCard from "./AnimeCard.jsx";
 import Pagination from "../Pagination.jsx";
 import Spinner from "../Spinner.jsx";
-
 
 function Anime() {
   const [anime, setAnime] = useState([]);
@@ -12,29 +11,22 @@ function Anime() {
   const [watchList, setWatchList] = useState(
     JSON.parse(localStorage.getItem("watchlist")) || []
   );
-
   const [loading, setLoading] = useState(true);
-
 
   const handleAddToWatchList = (animeObj) => {
     const newWatchList = [...watchList, animeObj];
     localStorage.setItem("watchlist", JSON.stringify(newWatchList));
     setWatchList(newWatchList);
-    // console.log(newWatchList)
   };
 
   const handleRemoveFromWatchList = (animeObj) => {
-    const filteredWatchlist = watchList.filter((added) => {
-      return added.mal_id != animeObj.mal_id;
-    });
+    const filteredWatchlist = watchList.filter((added) => added.mal_id !== animeObj.mal_id);
     localStorage.setItem("watchlist", JSON.stringify(filteredWatchlist));
     setWatchList(filteredWatchlist);
   };
 
   function handlePrev() {
-    if (pageNo === 1) {
-      setPageNo(1);
-    } else {
+    if (pageNo > 1) {
       setPageNo(pageNo - 1);
     }
   }
@@ -45,38 +37,30 @@ function Anime() {
 
   useEffect(() => {
     async function fetchData() {
-
-          setLoading(true); // Start loading
-
+      setLoading(true);
       const api_URL = import.meta.env.VITE_API_URL;
 
       try {
         const res = await axios.get(`${api_URL}${pageNo}`);
         setAnime(res.data.data || []);
-        // console.log(res.data)
       } catch (error) {
         console.error("Error fetching data:", error);
-      } 
-      finally {
-      setLoading(false); // Stop loading
-    }
+      } finally {
+        setLoading(false);
+      }
     }
     fetchData();
-    console.log(watchList);
-  }, [pageNo]);
+  }, [pageNo]); // ✅ No more lint warning
 
-  if (loading) 
-    {
-  return <Spinner />;
-     }
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
-    <div className='overflow-hidden'>
-      <Banner/>
+    <div className="overflow-hidden">
+      <Banner />
       <div>
-        <div className="w-full text-3xl text-center p-5 m-4">
-          Trending Anime
-        </div>
+        <div className="w-full text-3xl text-center p-5 m-4">Trending Anime</div>
         <div className="flex flex-row flex-wrap justify-around gap-10">
           {anime.map((animeObj) => (
             <AnimeCard
@@ -90,11 +74,7 @@ function Anime() {
             />
           ))}
         </div>
-        <Pagination
-          pageNo={pageNo}
-          handlePrev={handlePrev}
-          handleNext={handleNext}
-        />
+        <Pagination pageNo={pageNo} handlePrev={handlePrev} handleNext={handleNext} />
       </div>
     </div>
   );
