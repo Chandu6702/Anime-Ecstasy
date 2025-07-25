@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import Banner from "./Banner.jsx";
 import axios from "axios";
 import AnimeCard from "./AnimeCard.jsx";
@@ -12,6 +13,8 @@ function Anime() {
     JSON.parse(localStorage.getItem("watchlist")) || []
   );
   const [loading, setLoading] = useState(true);
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("search");
 
   const handleAddToWatchList = (animeObj) => {
     const newWatchList = [...watchList, animeObj];
@@ -20,7 +23,9 @@ function Anime() {
   };
 
   const handleRemoveFromWatchList = (animeObj) => {
-    const filteredWatchlist = watchList.filter((added) => added.mal_id !== animeObj.mal_id);
+    const filteredWatchlist = watchList.filter(
+      (added) => added.mal_id !== animeObj.mal_id
+    );
     localStorage.setItem("watchlist", JSON.stringify(filteredWatchlist));
     setWatchList(filteredWatchlist);
   };
@@ -38,19 +43,26 @@ function Anime() {
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
-      const api_URL = import.meta.env.VITE_API_URL;
-
       try {
-        const res = await axios.get(`${api_URL}${pageNo}`);
-        setAnime(res.data.data || []);
+        if (searchQuery) {
+          const res = await axios.get(
+            `${import.meta.env.VITE_JIKAN_API}anime?q=${searchQuery}`
+          );
+          setAnime(res.data.data || []);
+        } else {
+          const api_URL = import.meta.env.VITE_API_URL;
+          const res = await axios.get(`${api_URL}${pageNo}`);
+          setAnime(res.data.data || []);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
     }
+
     fetchData();
-  }, [pageNo]); // ✅ No more lint warning
+  }, [pageNo, searchQuery]);
 
   if (loading) {
     return <Spinner />;
@@ -60,7 +72,9 @@ function Anime() {
     <div className="overflow-hidden">
       <Banner />
       <div>
-        <div className="w-full text-3xl text-center p-5 m-4">Trending Anime</div>
+        <div className="w-full text-3xl text-center p-5 m-4">
+          {searchQuery ? `Search Results for "${searchQuery}"` : "Trending Anime"}
+        </div>
         <div className="flex flex-row flex-wrap justify-around gap-10">
           {anime.map((animeObj) => (
             <AnimeCard
@@ -74,7 +88,9 @@ function Anime() {
             />
           ))}
         </div>
-        <Pagination pageNo={pageNo} handlePrev={handlePrev} handleNext={handleNext} />
+        {!searchQuery && (
+          <Pagination pageNo={pageNo} handlePrev={handlePrev} handleNext={handleNext} />
+        )}
       </div>
     </div>
   );
