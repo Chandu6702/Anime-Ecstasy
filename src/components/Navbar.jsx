@@ -27,7 +27,8 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className='flex justify-between items-center px-6 py-4 bg-black shadow-md'>
+  <nav className='flex justify-between items-center px-6 py-4 bg-white/20 backdrop-blur-lg shadow-lg text-white rounded-xl border border-white/30 transition-all duration-700 ease-in-out'>
+
       <div className='flex items-center space-x-8'>
         <img src='/logo.svg' alt="Logo" className='w-[50px] h-auto' />
         <NavLink to="/" className='text-3xl font-bold text-blue-500 hover:underline'>
