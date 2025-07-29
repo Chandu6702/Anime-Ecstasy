@@ -26,17 +26,24 @@ export const Navbar = () => {
     }
   };
 
-  return (
-    <nav className='flex justify-between items-center px-6 py-4 bg-black shadow-md'>
-      <div className='flex items-center space-x-8'>
-        <img src='/logo.svg' alt="Logo" className='w-[50px] h-auto' />
-        <NavLink to="/" className='text-3xl font-bold text-blue-500 hover:underline'>
-          Anime
-        </NavLink>
-        <NavLink to="/watchlist" className='text-3xl font-bold text-blue-500 hover:underline'>
-          Watch-list
-        </NavLink>
-      </div>
+
+
+    return (
+        <nav>
+        <div className='flex flex-row w-full bg-black'>
+            <nav className='flex space-x-8 w-full items-center p-4 bg-black mx-4 justify-center'>
+            {/* <img src='/logo.svg' alt="logo" className='w-[50px]' /> */}
+            <div className="text-3xl fixed left-3 top-3 font-extrabold bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+  Anime Ecstasy
+</div>
+
+            <NavLink to={""} className='text-xl font-bold text-white hover:text-purple-500'>Home</NavLink>
+            <NavLink to={""} className='text-xl font-bold text-white hover:text-cyan-400'>Categories</NavLink>
+            
+            <NavLink to={""} className='text-xl font-bold text-white hover:text-blue-500'>Trending</NavLink>
+            <NavLink to={"/watchlist"} className='text-xl font-bold text-white hover:text-pink-300'>Watch-list</NavLink>
+          
+        </nav>
 
       <div className='flex items-center space-x-4'>
         {/* Search section */}
@@ -66,8 +73,8 @@ export const Navbar = () => {
           )}
         </div>
 
-        {/* Auth section */}
-        {user ? (
+          <div className=''>
+            {user ? (
           <button
             onClick={handleProfileClick}
             className='bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700 transition'
@@ -77,12 +84,17 @@ export const Navbar = () => {
         ) : (
           <button
             onClick={handleLoginClick}
-            className='bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition'
+            className='bg-blue-600 text-white px-5 py-2  mr-10 rounded hover:bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 transition'
           >
             Login
           </button>
         )}
+          </div>
+        {/* Auth section */}
+        
+      </div>
       </div>
     </nav>
+
   );
 };
