@@ -55,6 +55,44 @@ Welcome to Anime-Ecstasy! We appreciate your interest in contributing. Please fo
    - Your PR will be reviewed by the maintainers.
    - Once approved and tested, it will be merged into `test` and later deployed from `deploy`.
 
+## 🔥 Firebase Setup (For Contributors)
+
+Run the project with your **own Firebase setup**, follow the steps below to configure Firebase and use your own credentials safely for development.
+
+---
+
+### ✅ Step 1: Create a Firebase Project
+
+1. Go to [https://console.firebase.google.com](https://console.firebase.google.com)
+2. Click **"Add Project"** and follow the prompts (you can skip Google Analytics)
+3. Once created, go to **Project Settings** (⚙️ icon near "Project Overview")
+
+---
+
+### ✅ Step 2: Register a Web App
+
+1. In **Project Settings**, scroll down to **Your apps**
+2. Click the **Web (</>) icon** to register a new web app
+3. Enter an app nickname (e.g., `dev-client`) and click **Register**
+4. Copy the config it provides — you'll paste these values later in .env
+
+---
+
+### ✅ Step 3: Enable Google Sign-In
+
+1. In the left sidebar, go to **Authentication > Sign-in Method**
+2. Click **Google**, enable it, and choose a **Project support email**
+3. Click **Save**
+
+
+### ✅ Step 4: update `.env` with `.env.dev` in Your Project Root
+1. Copy the keys from .env.dev paste in .env
+2. Paste the config values(keep in quotes) in .env from step-2
+3. **Save** .env
+
+⚠️ Never commit .env file or any real credentials to the repository.
+---
+
 ## Issue Types
 
 When raising an issue, please use one of the following types:

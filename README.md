@@ -139,6 +139,10 @@ All anime lovers and open-source enthusiasts are welcome!
 
 Please read [`CONTRIBUTION.md`](./CONTRIBUTION.md) for detailed guidelines.
 
+## 🔥Firebase Setup (For Contributors)
+
+For firebase setup locally, Please read [`CONTRIBUTION.md`](./CONTRIBUTION.md).
+
 ---
 
 ## 📄 License
