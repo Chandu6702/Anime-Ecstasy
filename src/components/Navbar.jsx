@@ -7,13 +7,11 @@ export const Navbar = () => {
     const [inputValue, setInputValue] = useState("")
     const navigate = useNavigate()
 
-    // Toggles the visibility of the search input and resets the input value
     const toggleSearch = () => {
         setShowSearch(!showSearch)
         setInputValue("")
     }
 
-    // Handles search when 'Enter' is pressed
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             if (inputValue.trim() !== "") {
@@ -25,11 +23,23 @@ export const Navbar = () => {
     }
 
     return (
-        <nav className='flex items-center justify-between p-4 bg-black'>
-            <div className='flex space-x-8 items-center'>
-                <img src='/logo.svg' alt="logo" className='w-[50px]' />
-                <NavLink to={""} className='text-3xl font-bold text-blue-500'>Anime</NavLink>
-                <NavLink to={"/watchlist"} className='text-3xl font-bold text-blue-500'>Watch-list</NavLink>
+        <nav className='flex items-center justify-between px-8 py-4 bg-black/60 backdrop-blur-md border-b border-cyan-500/30 shadow-[0_0_15px_rgba(0,255,255,0.2)] z-50'>
+            <div className='flex space-x-10 items-center'>
+                <img src='/logo.svg' alt="logo" className='w-[50px] drop-shadow-lg' />
+
+                <NavLink 
+                    to={""} 
+                    className='text-3xl font-extrabold tracking-wider bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent hover:from-pink-500 hover:to-yellow-400 transition-all duration-300'
+                >
+                    Anime
+                </NavLink>
+
+                <NavLink 
+                    to={"/watchlist"} 
+                    className='text-lg text-white hover:text-cyan-400 tracking-wide transition-all duration-200 border-b-2 border-transparent hover:border-cyan-400'
+                >
+                    Watch-list
+                </NavLink>
             </div>
 
             <div className='relative'>
@@ -37,21 +47,21 @@ export const Navbar = () => {
                     <div className='flex items-center'>
                         <input
                             type="text"
-                            placeholder="Search..."
+                            placeholder="Search anime..."
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyDown}
-                            className='px-3 py-1 text-black rounded-md focus:outline-none w-[200px]'
+                            className='px-4 py-2 w-[220px] bg-black/70 text-white border border-cyan-400/30 rounded-md backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-cyan-400 placeholder:text-gray-400 font-mono text-sm shadow-inner'
                         />
                         <FiX
-                            className='text-white text-2xl ml-2 cursor-pointer'
+                            className='text-red-400 text-2xl ml-2 cursor-pointer hover:text-white transition-all duration-300'
                             onClick={toggleSearch}
                             title="Close search"
                         />
                     </div>
                 ) : (
                     <FiSearch
-                        className='text-white text-2xl cursor-pointer'
+                        className='text-cyan-300 text-2xl cursor-pointer hover:text-white transition-all duration-300'
                         onClick={toggleSearch}
                         title="Open search"
                     />
@@ -60,3 +70,4 @@ export const Navbar = () => {
         </nav>
     )
 }
+export default Navbar
