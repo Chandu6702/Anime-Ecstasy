@@ -21,9 +21,6 @@ useEffect(() => {
   }, 500);
 }, []);
 
-      setLoading(false);
-    }, 300);
-  }, []);
 
   const handleSearch = (e) => setSearch(e.target.value);
   const handleFilter = (item) => setCurreGenre(item);
