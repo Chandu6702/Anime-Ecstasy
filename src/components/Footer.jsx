@@ -8,7 +8,6 @@ import {
   Instagram,
   ChevronUp,
   Heart,
-  ExternalLink,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -49,7 +48,7 @@ function Footer() {
 
       {showScrollToTop && (
         <button
-          className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg"
+          className="fixed bottom-20 right-6 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg z-50"
           onClick={scrollToTop}
         >
           <ChevronUp />
