@@ -6,11 +6,11 @@ export default {
   ],
   theme: {
     extend: {
-    fontFamily: {
-      orbitron: ['Orbitron', 'sans-serif']
+      fontFamily: {
+        orbitron: ['Orbitron', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'] // Add this line
+      }
     }
-  }
-},
+  },
   plugins: [],
 }
-
