@@ -13,7 +13,7 @@ function BannerCarousel() {
     async function load() {
       try {
         const res = await fetch(
-          'https://kitsu.io/api/edge/anime?page[limit]=10&sort=popularityRank'
+          'https://kitsu.io/api/edge/anime?page[limit]=10&sort=ratingRank&filter[status]=current'
         );
         const json = await res.json();
         const items = json.data;
