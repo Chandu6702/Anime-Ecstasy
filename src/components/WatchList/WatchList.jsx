@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaArrowUp } from "react-icons/fa";
-import { FaArrowDown } from "react-icons/fa";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import Spinner from "../Spinner";
 
 function WatchList() {
@@ -10,143 +9,142 @@ function WatchList() {
   const [currGenre, setCurreGenre] = useState("All Genres");
   const [loading, setLoading] = useState(true);
 
+useEffect(() => {
+  setLoading(true);
 
-  useEffect(() => {
-    setLoading(true);
+  setTimeout(() => {
+    const stored = localStorage.getItem("watchlist");
+    if (stored) {
+      setWatchList(JSON.parse(stored));
+    }
+    setLoading(false);
+  }, 500);
+}, []);
 
-    setTimeout(() => {
-      const stored = localStorage.getItem("watchlist");
-      if (stored) {
-        setWatchList(JSON.parse(stored));
-      }
-      setLoading(false);
-    }, 300);
-  }, []);
 
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  };
-
-  const handleFilter = (item) => {
-    setCurreGenre(item);
-  };
+  const handleSearch = (e) => setSearch(e.target.value);
+  const handleFilter = (item) => setCurreGenre(item);
 
   const handleRemoveFromWatchList = (animeObj) => {
-    const filteredWatchlist = watchList.filter((added) => {
-      return added.mal_id != animeObj.mal_id;
-    });
+    const filteredWatchlist = watchList.filter(
+      (added) => added.mal_id !== animeObj.mal_id
+    );
     localStorage.setItem("watchlist", JSON.stringify(filteredWatchlist));
     setWatchList(filteredWatchlist);
   };
 
   const sortIncreasing = () => {
-    let Increasing = watchList.sort((item1, item2) => {
-      return item1.score - item2.score;
-    });
+    let Increasing = watchList.sort((a, b) => a.score - b.score);
     setWatchList([...Increasing]);
   };
 
   const sortDecreasing = () => {
-    let decreasing = watchList.sort((item1, item2) => {
-      return item2.score - item1.score;
-    });
+    let decreasing = watchList.sort((a, b) => b.score - a.score);
     setWatchList([...decreasing]);
   };
 
   useEffect(() => {
-    let temp = watchList.map((item) => {
-      return item.genres[0].name;
-    });
+    let temp = watchList.map((item) => item.genres[0].name);
     temp = new Set(temp);
     setGenreList(["All Genres", ...temp]);
   }, [watchList]);
 
-  if (loading)     //if loading is true , return spinner.
-  {
-    return <Spinner />;
-  }
+if (loading) return <Spinner />;
+
 
   return (
     <>
-      <div className="flex justify-center items-centerflex-wrap m-4 ">
+      {/* Genre Filter Buttons */}
+      <div className="flex justify-center items-center flex-wrap gap-4 mt-6 mb-4">
         {genreList.map((genre, index) => (
           <div
             key={index}
             onClick={() => handleFilter(genre)}
-            className={
+            className={`cursor-pointer px-6 py-2 rounded-full font-semibold text-sm shadow-md transition-all duration-300 ${
               currGenre === genre
-                ? "flex justify-center items-center p-2 h-[3rem] w-[9rem] bg-blue-400 rounded-xl text-white font-bold mx-4"
-                : "flex justify-center items-center h-[3rem] w-[9rem] bg-gray-400/50 rounded-xl text-white font-bold mx-4"
-            }
+                ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white scale-105"
+                : "bg-gray-700/50 text-gray-200 hover:bg-blue-600 hover:text-white"
+            }`}
           >
             {genre}
           </div>
         ))}
       </div>
+
+      {/* Search Bar */}
       <div className="flex justify-center my-4">
         <input
           onChange={handleSearch}
           value={search}
           type="text"
-          placeholder="search Anime"
-          className="h-[3rem] w-[18rem] bg-gray-200 outline-none px-4"
+          placeholder="Search anime..."
+          className="h-[3rem] w-[20rem] bg-gray-800 text-white px-5 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-400 shadow-lg"
         />
       </div>
-      <div className="border rounded overflow-hidden border-gray-200 m-8">
-        <table className="w-full text-gray-600 text-center">
-          <thead className="border-b-2">
-            <tr>
-              <th>Name</th>
-              <th className="flex justify-center">
-                <div
-                  className="p-2 hover:cursor-pointer hover:scale-125 duration-200"
+
+      {/* Anime Table */}
+      <div className="overflow-x-auto m-6 bg-black/70 border border-blue-500/20 rounded-xl shadow-2xl backdrop-blur-lg">
+        <table className="w-full text-white text-sm lg:text-base text-center table-auto">
+          <thead className="border-b border-blue-500/20">
+            <tr className="uppercase tracking-wider text-blue-400">
+              <th className="py-3">Name</th>
+              <th className="flex justify-center items-center gap-1 py-3">
+                <button
+                  className="hover:text-green-400 hover:scale-110 transition-all"
                   onClick={sortIncreasing}
+                  title="Sort by low rating"
                 >
                   <FaArrowUp />
-                </div>
-                <div className="p-2">Rating</div>
-                <div
-                  className="p-2 hover:cursor-pointer hover:scale-125 duration-200"
+                </button>
+                <span>Rating</span>
+                <button
+                  className="hover:text-red-400 hover:scale-110 transition-all"
                   onClick={sortDecreasing}
+                  title="Sort by high rating"
                 >
                   <FaArrowDown />
-                </div>
+                </button>
               </th>
-              <th>Popularity</th>
-              <th>Genre</th>
+              <th className="py-3">Popularity</th>
+              <th className="py-3">Genre</th>
+              <th className="py-3">Action</th>
             </tr>
           </thead>
           <tbody>
             {watchList
-              .filter((item) => {
-                if (currGenre == "All Genres") {
-                  return true;
-                } else {
-                  return item.genres[0].name == currGenre;
-                }
-              })
-              .filter((item) => {
-                return item.title
+              .filter((item) =>
+                currGenre === "All Genres"
+                  ? true
+                  : item.genres[0].name === currGenre
+              )
+              .filter((item) =>
+                item.title
                   .toLowerCase()
-                  .includes(search.toLocaleLowerCase());
-              })
+                  .includes(search.toLowerCase().trim())
+              )
               .map((item) => (
-                <tr className="border-b-2" key={item.mal_id}>
-                  <td className="flex items-center px-6 py-4">
+                <tr
+                  key={item.mal_id}
+                  className="border-b border-gray-700 hover:bg-gray-900/60 transition-all duration-300"
+                >
+                  <td className="flex items-center gap-6 px-6 py-4">
                     <img
                       src={item.images.jpg.image_url}
-                      className="h-[100px] w-[100px]"
+                      alt={item.title}
+                      className="h-[100px] w-[100px] object-cover rounded-md shadow-md"
                     />
-                    <div className="mx-10">{item.title}</div>
+                    <span className="text-left font-medium">{item.title}</span>
                   </td>
                   <td>{item.score}</td>
                   <td>{item.popularity}</td>
                   <td>{item.genres[0].name}</td>
-                  <td
-                    className="text-red-800 hover:cursor-pointer hover:scale-125 duration-200"
-                    onClick={() => handleRemoveFromWatchList(item)}
-                  >
-                    Delete
+                  <td>
+                    <button
+                      className="text-red-500 hover:text-white hover:scale-125 transition-transform font-semibold"
+                      onClick={() => handleRemoveFromWatchList(item)}
+                    >
+                      ✖ Remove
+                    </button>
                   </td>
                 </tr>
               ))}
