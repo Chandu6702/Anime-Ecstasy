@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import {
   onAuthStateChanged,
@@ -6,6 +5,7 @@ import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile as updateFirebaseProfile, // Renamed to avoid name conflicts
 } from 'firebase/auth';
 import { auth, provider } from '../firebase';
 
@@ -42,6 +42,21 @@ export const AuthProvider = ({ children }) => {
 
   const logOut = () => signOut(auth);
 
+  // New function to update the user's display name
+  const updateUserName = async (newName) => {
+    if (auth.currentUser) {
+      try {
+        await updateFirebaseProfile(auth.currentUser, {
+          displayName: newName,
+        });
+        // Manually trigger a state update to reflect the new name immediately
+        setUser({ ...auth.currentUser });
+      } catch (error) {
+        console.error("Error updating display name:", error);
+      }
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
@@ -52,7 +67,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, signInWithGoogle, signInWithEmail, signUpWithEmail, logOut }}
+      value={{ user, signInWithGoogle, signInWithEmail, signUpWithEmail, logOut, updateUserName }}
     >
       {children}
     </AuthContext.Provider>

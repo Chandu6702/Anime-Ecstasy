@@ -1,0 +1,275 @@
+/* Main container with a new anime-themed background */
+.profile-page-container {
+    min-height: 100vh;
+    padding: 40px 20px;
+    background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  @media (min-width: 1024px) {
+    .profile-grid {
+      grid-template-columns: 400px 1fr;
+    }
+  }
+  
+  /* Glassmorphism Card for Profile Info */
+  .profile-info-card {
+    background: rgba(20, 20, 30, 0.7); /* Slightly bluer tint */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 198, 255, 0.2);
+    padding: 30px;
+    color: white;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    height: fit-content;
+  }
+  
+  .profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid;
+    /* New blue/cyan gradient for the border */
+    border-image: linear-gradient(45deg, #00c6ff, #0072ff) 1;
+    object-fit: cover;
+  }
+  
+  .profile-name-input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(0, 198, 255, 0.5);
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 1.25rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+    transition: border-color 0.3s ease;
+  }
+  
+  .profile-name-input:focus {
+    outline: none;
+    border-bottom-color: #00c6ff;
+  }
+  
+  .profile-details {
+    margin-top: 30px;
+  }
+  
+  .detail-section {
+    margin-bottom: 25px;
+  }
+  
+  .detail-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e0e0e0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 198, 255, 0.2);
+    padding-bottom: 8px;
+  }
+  
+  .detail-content {
+    color: #b0b0b0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  /* Modern Textarea and Input */
+  .profile-textarea-modern,
+  .profile-input-modern {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 198, 255, 0.3);
+    border-radius: 10px;
+    padding: 12px;
+    color: white;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+  
+  .profile-textarea-modern:focus,
+  .profile-input-modern:focus {
+    outline: none;
+    border-color: #00c6ff;
+    box-shadow: 0 0 15px rgba(0, 198, 255, 0.5);
+  }
+  
+  /* Modern Buttons with new color scheme */
+  .profile-actions-modern {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .action-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+  }
+  
+  .save-button {
+    background: linear-gradient(45deg, #28a745, #218838); /* Keep green for save */
+  }
+  .edit-button {
+    background: linear-gradient(45deg, #007bff, #0056b3); /* Blue gradient */
+  }
+  .logout-button {
+    background: linear-gradient(45deg, #dc3545, #b02a37); /* Red gradient for logout */
+  }
+  
+  .action-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Modern Watchlist Container */
+  .watchlist-container-modern {
+    background: rgba(20, 20, 30, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 198, 255, 0.2);
+    padding: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    overflow-y: auto; /* Allow scrolling */
+    max-height: 85vh; /* Set a max height */
+  }
+  
+  .content-tabs {
+    display: flex;
+    border-bottom: 2px solid #333;
+    margin-bottom: 30px;
+  }
+  
+  .tab-btn {
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .tab-btn.active {
+    color: #00c6ff;
+  }
+  
+  .tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #00c6ff;
+  }
+  
+  /* Watchlist/History Grid Styles */
+  .watchlist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 20px;
+  }
+  
+  .watchlist-item-card {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+  }
+  
+  .watchlist-item-card:hover {
+      transform: scale(1.05);
+  }
+  
+  .watchlist-item-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+  }
+  
+  .watchlist-item-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+      padding: 20px 10px 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+  }
+  
+  .watchlist-item-card:hover .watchlist-item-overlay {
+      opacity: 1;
+  }
+  
+  .watchlist-item-title {
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin: 0;
+  }
+  
+  .watchlist-item-remove-button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(220, 53, 69, 0.8);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+  
+  .watchlist-item-remove-button:hover {
+      background: #dc3545;
+  }
+  
+  .watchlist-empty-message {
+      color: #a0a0a0;
+      grid-column: 1 / -1; /* Span all columns */
+      text-align: center;
+      padding: 40px 0;
+      font-size: 1.1rem;
+  }

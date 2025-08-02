@@ -17,8 +17,9 @@ import Login from './components/Auth/Login.jsx';
 import Profile from './components/Profile/Profile.jsx';
 
 import { AuthProvider } from './context/AuthContext.jsx';
+import { ProfileProvider } from './context/ProfileContext.jsx'; // Import the new provider
 
-// ✅ Define routes without PrivateRoute
+// Define routes
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
@@ -31,11 +32,13 @@ const router = createBrowserRouter(
   )
 );
 
-// ✅ Render app with AuthProvider
+// Render app with both providers
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <ProfileProvider>
+        <RouterProvider router={router} />
+      </ProfileProvider>
     </AuthProvider>
   </React.StrictMode>
 );
