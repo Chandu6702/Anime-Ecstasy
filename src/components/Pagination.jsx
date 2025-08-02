@@ -16,9 +16,11 @@ function Pagination({ handleNext, handlePrev, pageNo, totalPages, setPage }) {
       <button
         key={i}
         onClick={() => setPage(i)}
-          className={`mx-1 px-3 py-1 rounded-full font-bold text-lg ${
-          pageNo === i ? 'bg-black text-white' : 'bg-white text-black'
-        } hover:scale-105 transition duration-200`}
+        className={`mx-1 px-3 py-1 rounded-full font-semibold text-lg border transition duration-200 ${
+          pageNo === i
+            ? 'text-white bg-black'
+            : 'text-black hover:underline'
+        }`}
       >
         {i}
       </button>
@@ -26,14 +28,14 @@ function Pagination({ handleNext, handlePrev, pageNo, totalPages, setPage }) {
   }
 
   return (
-    <div className="bg-gray-400 py-4 mt-8 flex justify-center items-center flex-wrap gap-2">
-      {/* Left Arrow */}
+    <div className="py-4 mt-8 flex justify-center items-center flex-wrap gap-2">
       <div
         onClick={handlePrev}
         className="hover:cursor-pointer hover:scale-125 duration-200"
       >
         <FaArrowAltCircleLeft size={30} className="text-black" />
       </div>
+      
       {pageButtons}
 
       {totalPages > endPage && (
@@ -41,19 +43,60 @@ function Pagination({ handleNext, handlePrev, pageNo, totalPages, setPage }) {
           <span className="mx-1 font-bold">...</span>
           <button
             onClick={() => setPage(totalPages)}
-              className={`mx-1 px-3 py-1 rounded-full font-bold text-lg ${
-              pageNo === totalPages ? 'bg-black text-white' : 'bg-white text-black'
-            } hover:scale-105 transition duration-200`}
+            className={`mx-1 px-3 py-1 rounded-full font-semibold text-lg border transition duration-200 ${
+              pageNo === totalPages
+                ? 'text-white bg-black'
+                : 'text-black hover:underline'
+            }`}
           >
             {totalPages}
           </button>
         </>
       )}
+
       <div
         onClick={handleNext}
         className="hover:cursor-pointer hover:scale-125 duration-200"
       >
         <FaArrowAltCircleRight size={30} className="text-black" />
+      </div>
+
+      {/* Go to Page input field */}
+      <div className="flex items-center gap-2 ml-4">
+        <label htmlFor="goToPage" className="text-black font-semibold">
+          Page:
+        </label>
+        <input
+          id="goToPage"
+          type="number"
+          min="1"
+          max={totalPages}
+          className="w-20 px-2 py-1 border border-black rounded"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              const val = parseInt(e.target.value);
+              if (!isNaN(val) && val >= 1 && val <= totalPages) {
+                setPage(val);
+              } else {
+                alert(`Please enter a number between 1 and ${totalPages}`);
+              }
+            }
+          }}
+        />
+        <button
+          onClick={() => {
+            const input = document.getElementById('goToPage');
+            const val = parseInt(input.value);
+            if (!isNaN(val) && val >= 1 && val <= totalPages) {
+              setPage(val);
+            } else {
+              alert(`Please enter a number between 1 and ${totalPages}`);
+            }
+          }}
+          className="px-3 py-1 bg-black text-white rounded hover:bg-gray-800"
+        >
+          Go
+        </button>
       </div>
     </div>
   );
