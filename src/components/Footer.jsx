@@ -152,12 +152,12 @@ const Footer = () => {
               <span>
                 by{" "}
                 <a
-                  href="https://github.com/whyvineet/orthoplay"
+                  href="https://github.com/Chandu6702/Anime-Ecstasy"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-200 hover:text-gray-100 transition-colors"
                 >
-                  Vineet Kumar
+                  Team
                 </a>
               </span>
             </div>
