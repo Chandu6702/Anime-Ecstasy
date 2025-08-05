@@ -44,45 +44,48 @@ function BannerCarousel() {
   return (
     <>
       <Swiper
-        modules={[Navigation, Autoplay, Pagination]}
-        autoplay={{ delay: 6000 }}
-        loop
-        navigation
-        pagination={{ clickable: true }}
-        observer={true}
-        observeParents={true}
-        className="w-full h-[90vh]"
-      >
-        {animeSlides.map((anime) => (
-          <SwiperSlide key={anime.id}>
-            <div
-              className="w-full h-full bg-cover bg-center relative"
-              style={{
-                backgroundImage: `url(${anime.image})`,
-              }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center px-6 md:px-20">
-                <div className="max-w-xl space-y-4 text-white">
-                  <h2 className="text-4xl font-bold">{anime.title}</h2>
-                  <p className="text-sm md:text-base opacity-90 line-clamp-4">
-                    {anime.description}
-                  </p>
-                  <div className="flex gap-4 mt-4">
-                    <button className="flex items-center gap-2 px-5 py-2 bg-white text-black font-semibold rounded hover:bg-gray-200">
-                      <FaPlus />
-                      Add to List
-                    </button>
-                    <button className="flex items-center gap-2 px-5 py-2 bg-white/30 text-white font-semibold rounded hover:bg-white/20">
-                      <FaInfoCircle />
-                      More Info
-                    </button>
-                  </div>
-                </div>
-              </div>
+  modules={[Navigation, Autoplay, Pagination]}
+  autoplay={{ delay: 6000 }}
+  loop
+  navigation
+  pagination={{ clickable: true }}
+  observer={true}
+  observeParents={true}
+  className="w-full h-[90vh]"
+>
+  {animeSlides.map((anime) => (
+    <SwiperSlide key={anime.id}>
+      <div className="w-full h-full relative overflow-hidden">
+       
+        <img
+    src={anime.image}
+    alt={anime.title}
+    className="w-full h-full object-cover"
+  />
+
+        
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center px-6 md:px-20">
+          <div className="max-w-xl space-y-4 text-white">
+            <h2 className="text-4xl font-bold">{anime.title}</h2>
+            <p className="text-sm md:text-base opacity-90 line-clamp-4">
+              {anime.description}
+            </p>
+            <div className="flex gap-4 mt-4">
+              <button className="flex items-center gap-2 px-5 py-2 bg-white text-black font-semibold rounded hover:bg-gray-200">
+                <FaPlus />
+                Add to List
+              </button>
+              <button className="flex items-center gap-2 px-5 py-2 bg-white/30 text-white font-semibold rounded hover:bg-white/20">
+                <FaInfoCircle />
+                More Info
+              </button>
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+          </div>
+        </div>
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
 
       {/* ✅ style tag placed correctly here */}
       <style jsx="true">{`
