@@ -9,13 +9,13 @@ import {
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCTuqP6eyhTZhqnb5cXd3kcakQPtgQujBk",
-  authDomain: "smartbiz-3.firebaseapp.com",
-  projectId: "smartbiz-3",
-  storageBucket: "smartbiz-3.firebasestorage.app",
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
   messagingSenderId: "865293096496",
-  appId: "1:865293096496:web:5fb450a2f7b306d1c73ff5",
-  measurementId: "G-LMCB6TJ2EP"
+  appId: "",
+  measurementId: ""
 };
 
   
