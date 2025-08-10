@@ -9,15 +9,16 @@ import {
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyCTuqP6eyhTZhqnb5cXd3kcakQPtgQujBk",
+  authDomain: "smartbiz-3.firebaseapp.com",
+  projectId: "smartbiz-3",
+  storageBucket: "smartbiz-3.firebasestorage.app",
+  messagingSenderId: "865293096496",
+  appId: "1:865293096496:web:5fb450a2f7b306d1c73ff5",
+  measurementId: "G-LMCB6TJ2EP"
 };
 
+  
 const app = initializeApp(firebaseConfig);
 
 
