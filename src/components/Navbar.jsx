@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FiSearch, FiX } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const { user } = useAuth(); // Get user from context

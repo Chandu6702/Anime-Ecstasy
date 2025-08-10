@@ -1,0 +1,144 @@
+.aboutus-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #1a1a1a; /* Dark grey background */
+}
+
+/* Glassmorphism Anime Card */
+.aboutus-card {
+  background: rgba(15, 15, 25, 0.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 0, 144, 0.3);
+  padding: 30px;
+  color: white;
+  max-width: 850px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 0.8s ease;
+}
+
+/* Anime Neon Title */
+.aboutus-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  /* background: linear-gradient(45deg, #ffcb05, #ff3c00); */
+ 
+  margin-bottom: 20px;
+  /* text-shadow: 0 0 10px rgba(255, 61, 144, 0.8); */
+}
+
+/* Section Headers with Anime Energy */
+.aboutus-subtitle {
+  font-size: 1.5rem;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  background: linear-gradient(45deg, #ffcb05, #ff3c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Body text in soft anime gray */
+.aboutus-text {
+  color: #d1d1e9;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* Feature List with bright bullet glow */
+.aboutus-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.aboutus-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 0, 144, 0.2);
+  color: #ffd6f6;
+  font-weight: 500;
+  position: relative;
+}
+
+.aboutus-list li::before {
+  content: "★";
+  color: #ff61d8;
+  position: absolute;
+  left: -20px;
+  text-shadow: 0 0 6px rgba(255, 97, 216, 0.8);
+}
+
+/* Footer with soft sakura pink */
+.aboutus-footer {
+  margin-top: 30px;
+  font-style: italic;
+  color: #ffb6d9;
+  text-align: center;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* 📱 Mobile Devices */
+@media (max-width: 768px) {
+  .aboutus-container {
+    padding: 20px 10px;
+  }
+  
+  .aboutus-card {
+    padding: 20px;
+  }
+
+  .aboutus-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .aboutus-subtitle {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .aboutus-text {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .aboutus-list li {
+    font-size: 0.9rem;
+    padding-left: 20px;
+  }
+}
+
+/* 📟 Tablet Devices */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .aboutus-card {
+    padding: 25px;
+  }
+
+  .aboutus-title {
+    font-size: 2.2rem;
+  }
+
+  .aboutus-subtitle {
+    font-size: 1.3rem;
+  }
+}

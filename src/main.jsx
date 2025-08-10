@@ -15,9 +15,9 @@ import WatchList from './components/WatchList/WatchList.jsx';
 import Anime from './components/Anime/Anime.jsx';
 import Login from './components/Auth/Login.jsx';
 import Profile from './components/Profile/Profile.jsx';
-
+import AboutUs from './components/About/AboutUs.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
-import { ProfileProvider } from './context/ProfileContext.jsx'; // Import the new provider
+import { ProfileProvider } from './context/ProfileContext.jsx';
 
 // Define routes
 const router = createBrowserRouter(
@@ -28,6 +28,7 @@ const router = createBrowserRouter(
       <Route path='profile' element={<Profile />} />
       <Route path='login' element={<Login />} />
       <Route path='*' element={<Navigate to='/' />} />
+      <Route path='about' element={<AboutUs />} />
     </Route>
   )
 );
