@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext'; // Import useAuth
 
 const Login = () => {
   const navigate = useNavigate();
-  const { signInWithGoogle } = useAuth(); // Use the context function
+  const { signInWithGoogle, signInWithEmail } = useAuth();
 
   const handleGoogleLogin = async () => {
     try {

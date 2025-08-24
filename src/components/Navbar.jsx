@@ -12,6 +12,7 @@ export const Navbar = () => {
 
   const handleLoginClick = () => navigate('/login');
   const handleProfileClick = () => navigate('/profile');
+  const handleSignupClick = () =>  navigate('/signup')
 
   const toggleSearch = () => {
     setShowSearch(!showSearch);
@@ -48,6 +49,9 @@ export const Navbar = () => {
         <NavLink to="/watchlist" className="text-xl font-bold text-white hover:text-pink-300">
           Watch-list
         </NavLink>
+         <NavLink to="/contactus" className="text-xl font-bold text-white hover:text-blue-500">
+          Contact-Us
+        </NavLink>
       </div>
 
       {/* Right: Search + Auth */}
@@ -79,25 +83,31 @@ export const Navbar = () => {
           )}
         </div>
 
-        {/* Auth */}
-        {user ? (
-          <button
-            onClick={handleProfileClick}
-            className="bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700 transition"
-          >
-            Profile
-          </button>
-        ) : (
-          <button
-            onClick={handleLoginClick}
-            className="bg-blue-600 text-white px-5 py-2 rounded hover:bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 transition"
-          >
-            Login
-          </button>
-        )}
-      </div>
-    </nav>
-
-
+     {/* Auth */}
+{user ? (
+  <button
+    onClick={handleProfileClick}
+    className="bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700 transition"
+  >
+    Profile
+  </button>
+) : (
+  <div className="flex gap-2">
+    <button
+      onClick={handleLoginClick}
+      className="bg-blue-600 text-white px-5 py-2 rounded hover:bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 transition"
+    >
+      Login
+    </button>
+    <button
+      onClick={handleSignupClick}
+      className="bg-blue-600 text-white px-5 py-2 rounded hover:bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 transition"
+    >
+      Signup
+    </button>
+  </div>
+)}
+   </div>
+   </nav>
   );
 };

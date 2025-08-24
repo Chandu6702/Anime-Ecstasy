@@ -101,6 +101,13 @@ const Footer = () => {
           iconColor: "text-pink-300 group-hover:text-pink-200",
           hover: "hover:text-pink-300",
         },
+         {
+          name: "Contact Us",
+          href: "/ContactUs",
+          icon: Phone,
+          iconColor: "text-blue-400 group-hover:text-blue-300",
+          hover: "hover:text-blue-400",
+        },
       ],
     },
     {

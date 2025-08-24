@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signUpWithEmail = async (email, password) => {
+  const signUpWithEmail = async (email, password, fullName) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
     } catch (err) {
