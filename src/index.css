@@ -25,6 +25,7 @@
 /* vertical scrollbar for firefox */
 body {
   scrollbar-width: none;
+  background-color: black;
 }
 
 @tailwind base;

@@ -19,7 +19,7 @@ function Pagination({ handleNext, handlePrev, pageNo, totalPages, setPage }) {
         className={`mx-1 px-3 py-1 rounded-full font-semibold text-lg border transition duration-200 ${
           pageNo === i
             ? 'text-white bg-black'
-            : 'text-black hover:underline'
+            : 'text-white hover:underline'
         }`}
       >
         {i}
@@ -33,20 +33,20 @@ function Pagination({ handleNext, handlePrev, pageNo, totalPages, setPage }) {
         onClick={handlePrev}
         className="hover:cursor-pointer hover:scale-125 duration-200"
       >
-        <FaArrowAltCircleLeft size={30} className="text-black" />
+        <FaArrowAltCircleLeft size={30} className="text-white" />
       </div>
       
       {pageButtons}
 
       {totalPages > endPage && (
         <>
-          <span className="mx-1 font-bold">...</span>
+          <span className="mx-1 font-bold text-white">...</span>
           <button
             onClick={() => setPage(totalPages)}
             className={`mx-1 px-3 py-1 rounded-full font-semibold text-lg border transition duration-200 ${
               pageNo === totalPages
                 ? 'text-white bg-black'
-                : 'text-black hover:underline'
+                : 'text-white hover:underline'
             }`}
           >
             {totalPages}
@@ -58,12 +58,12 @@ function Pagination({ handleNext, handlePrev, pageNo, totalPages, setPage }) {
         onClick={handleNext}
         className="hover:cursor-pointer hover:scale-125 duration-200"
       >
-        <FaArrowAltCircleRight size={30} className="text-black" />
+        <FaArrowAltCircleRight size={30} className="text-white" />
       </div>
 
       {/* Go to Page input field */}
       <div className="flex items-center gap-2 ml-4">
-        <label htmlFor="goToPage" className="text-black font-semibold">
+        <label htmlFor="goToPage" className="text-white font-semibold">
           Page:
         </label>
         <input
@@ -71,7 +71,7 @@ function Pagination({ handleNext, handlePrev, pageNo, totalPages, setPage }) {
           type="number"
           min="1"
           max={totalPages}
-          className="w-20 px-2 py-1 border border-black rounded"
+          className="w-20 px-2 py-1 border border-white rounded"
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               const val = parseInt(e.target.value);
@@ -93,7 +93,7 @@ function Pagination({ handleNext, handlePrev, pageNo, totalPages, setPage }) {
               alert(`Please enter a number between 1 and ${totalPages}`);
             }
           }}
-          className="px-3 py-1 bg-black text-white rounded hover:bg-gray-800"
+          className="px-3 py-1 bg-white text-black rounded hover:bg-gray-300"
         >
           Go
         </button>
