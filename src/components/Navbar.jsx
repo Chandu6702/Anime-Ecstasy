@@ -5,7 +5,7 @@ import { MdMenu } from 'react-icons/md';
 import { useAuth } from '../context/AuthContext';
 
 export const Navbar = () => {
-  const { user } = useAuth(); // Get user from context
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   const [showSearch, setShowSearch] = useState(false);
@@ -14,6 +14,7 @@ export const Navbar = () => {
 
   const handleLoginClick = () => navigate('/login');
   const handleProfileClick = () => navigate('/profile');
+  const handleSignupClick = () => navigate('/signup');
 
   const toggleSearch = () => {
     setShowSearch(!showSearch);
@@ -28,9 +29,7 @@ export const Navbar = () => {
     }
   };
 
-  const openMenu = () => {
-    showMenu ? setShowMenu(false) : setShowMenu(true);
-  };
+  const openMenu = () => setShowMenu(!showMenu);
 
   return (
     <nav className="bg-black w-full fixed top-0 left-0 z-50 shadow-md h-[70px] flex items-center px-6">
@@ -41,7 +40,7 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Center: Nav Links (absolute center) */}
+      {/* Center: Nav Links */}
       <div className="absolute left-1/2 transform -translate-x-1/2 flex space-x-8">
         <NavLink to="/" className="hidden md:block text-xl font-bold text-white hover:text-purple-500">
           Home
@@ -51,6 +50,9 @@ export const Navbar = () => {
         </NavLink>
         <NavLink to="/watchlist" className="hidden md:block text-xl font-bold text-white hover:text-pink-300">
           Watch-list
+        </NavLink>
+        <NavLink to="/contactus" className="text-xl font-bold text-white hover:text-blue-500">
+          Contact-Us
         </NavLink>
       </div>
 
@@ -92,16 +94,25 @@ export const Navbar = () => {
             Profile
           </button>
         ) : (
-          <button
-            onClick={handleLoginClick}
-            className="bg-blue-600 text-white px-5 py-2 rounded hover:bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 transition"
-          >
-            Login
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={handleLoginClick}
+              className="bg-blue-600 text-white px-5 py-2 rounded hover:bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 transition"
+            >
+              Login
+            </button>
+            <button
+              onClick={handleSignupClick}
+              className="bg-blue-600 text-white px-5 py-2 rounded hover:bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 transition"
+            >
+              Signup
+            </button>
+          </div>
         )}
       </div>
+
       {/* Mobile hamburger menu */}
-      <div className='md:hidden ml-4' onClick={openMenu}>
+      <div className="md:hidden ml-4" onClick={openMenu}>
         <MdMenu className="text-white text-3xl md:hidden cursor-pointer" />
         {showMenu && (
           <div className="absolute top-16 right-4 bg-black border border-gray-700 rounded shadow-lg flex flex-col">
@@ -126,11 +137,16 @@ export const Navbar = () => {
             >
               Watch-list
             </NavLink>
+            <NavLink
+              to="/contactus"
+              className="px-4 py-2 text-white hover:text-blue-500"
+              onClick={() => setShowMenu(false)}
+            >
+              Contact-Us
+            </NavLink>
           </div>
         )}
       </div>
     </nav>
-
-
   );
 };

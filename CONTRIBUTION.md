@@ -91,7 +91,7 @@ Run the project with your **own Firebase setup**, follow the steps below to conf
 3. **Save** .env
 
 ⚠️ Never commit .env file or any real credentials to the repository.
----
+--- 
 
 ## Issue Types
 
