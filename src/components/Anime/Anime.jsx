@@ -4,6 +4,8 @@ import axios from 'axios';
 import AnimeCard from './AnimeCard.jsx';
 import Pagination from '../Pagination.jsx';
 import Spinner from '../Spinner.jsx';
+import FilterBar from "./FilterBar";
+
 import { useSearchParams } from 'react-router-dom';
 import { useProfile } from '../../context/ProfileContext.jsx';
 import { useAuth } from '../../context/AuthContext.jsx';
