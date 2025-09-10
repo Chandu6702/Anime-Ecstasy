@@ -25,24 +25,24 @@ const AboutUs = () => {
       <section className="space-y-6">
         <h2 className="text-3xl font-bold text-center">Key Features</h2>
         <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-[rgb(191,170,212)] p-6 rounded-lg shadow hover:shadow-lg transition">
+          <div className="bg-[rgb(191,170,212)] p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
             <h3 className="text-xl font-bold mb-2">🎬 Trending Anime Gallery</h3>
             <p>Explore the most talked-about anime with beautiful visuals and titles to keep you updated with the latest trends.</p>
           </div>
-          <div className="bg-[rgb(191,170,212)] p-6 rounded-lg shadow hover:shadow-lg transition">
+          <div className="bg-[rgb(191,170,212)] p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
             <h3 className="text-xl font-bold mb-2">⭐ Add to Watchlist</h3>
             <p>Found something you like? Save it instantly and easily access it later, even after closing your browser.</p>
           </div>
-          <div className="bg-[rgb(191,170,212)] p-6 rounded-lg shadow hover:shadow-lg transition">
+          <div className="bg-[rgb(191,170,212)] p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
             <h3 className="text-xl font-bold mb-2">❌ Remove from Watchlist</h3>
             <p>No longer interested? Remove any anime from your list with a single click.</p>
           </div>
-          <div className="bg-[rgb(191,170,212)] p-6 rounded-lg shadow hover:shadow-lg transition">
+          <div className="bg-[rgb(191,170,212)] p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
             <h3 className="text-xl font-bold mb-2">📖 Pagination</h3>
             <p>Browse seamlessly across multiple pages of anime content using intuitive navigation controls.</p>
           </div>
           {/* Fully Responsive Card centered */}
-          <div className="bg-[rgb(191,170,212)] p-6 rounded-lg shadow hover:shadow-lg transition md:col-span-2 md:w-1/2 md:mx-auto">
+          <div className="bg-[rgb(191,170,212)] p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg md:col-span-2 md:w-1/2 md:mx-auto">
             <h3 className="text-xl font-bold mb-2">📱 Fully Responsive</h3>
             <p>Enjoy the app on any device – mobile, tablet, or desktop – with a layout that adapts perfectly.</p>
           </div>
