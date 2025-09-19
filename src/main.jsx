@@ -17,6 +17,7 @@ import Login from './components/Auth/Login.jsx';
 import Signup from './components/Auth/Signup.jsx';
 import Profile from './components/Profile/Profile.jsx';
 import ContactUs from './components/ContactUs.jsx';
+import AboutUs from './components/AboutUs.jsx';
 
 import { AuthProvider } from './context/AuthContext.jsx';
 import { ProfileProvider } from './context/ProfileContext.jsx'; // Import the new provider
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
       <Route index element={<Anime />} />
       <Route path='watchlist' element={<WatchList />} />
       <Route path='contactus' element={<ContactUs />} />
+      <Route path='about' element={<AboutUs />} />
       <Route path='profile' element={<Profile />} />
       <Route path='login' element={<Login />} />
       <Route path='signup' element={<Signup />} /> 
