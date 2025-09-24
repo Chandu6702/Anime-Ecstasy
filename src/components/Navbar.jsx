@@ -33,12 +33,16 @@ export const Navbar = () => {
 
   return (
     <nav className="bg-black w-full fixed top-0 left-0 z-50 shadow-md h-[70px] flex items-center px-6">
-      {/* Left: Logo */}
-      <div className="w-[220px]">
-        <div className="text-2xl font-extrabold bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
-          Anime Ecstasy
-        </div>
-      </div>
+    import { Link } from "react-router-dom";
+
+{/* Left: Logo */}
+<div className="w-[220px]">
+  <Link to="/">
+    <div className="text-2xl font-extrabold bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent cursor-pointer">
+      Anime Ecstasy
+    </div>
+  </Link>
+</div>
 
       {/* Center: Nav Links */}
       <div className="absolute left-1/2 transform -translate-x-1/2 flex space-x-8">
