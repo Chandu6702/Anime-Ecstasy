@@ -78,7 +78,7 @@ function Anime() {
 
   return (
     <div className='overflow-hidden'>
-      <Banner />
+      {!searchQuery && <Banner />}
       <div>
         <div className='w-full text-3xl text-center p-5 m-4'>
           {searchQuery ? `Search Results for "${searchQuery}"` : 'Trending Anime'}
